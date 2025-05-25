@@ -4,3 +4,7 @@
 
 layout: home
 ---
+
+## Sekvenser
+
+Sekvenser är en tidskrift om teckande serier.
