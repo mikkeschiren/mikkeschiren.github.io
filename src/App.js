@@ -1,7 +1,30 @@
 import './App.css';
+import React, { useState } from 'react';
 import { Button, Container, Typography, Box } from '@mui/material';
 
 function App() {
+
+  const [scriptLoaded, setScriptLoaded] = useState(false);
+
+  const handleLoadPublitScript = () => {
+    // Prevent multiple injections
+    if (scriptLoaded) return;
+
+    // Create a script element
+    const script = document.createElement('script');
+    script.async = true;
+    script.setAttribute("loading", "lazy");
+    script.src = "https://webshop.publit.com/publit-webshop-1.0.js";
+    // Insert the JSON config as text content
+    script.text = `
+      {
+        "id": "5659",
+        "sortBy": "priority:desc"
+      }
+    `;
+    document.body.appendChild(script);
+    setScriptLoaded(true);
+  };
   return (
     <Container>
       <Box my={4} textAlign="center">
@@ -11,10 +34,17 @@ function App() {
         <Typography>
         [ˈtɛkːnadɛ ˈseːrjɛr]
         </Typography>
-        <Button variant="contained" color="primary" sx={{ mt: 2 }}>
-          Köp
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ mt: 2 }}
+          onClick={handleLoadPublitScript}
+          disabled={scriptLoaded}
+        >
+          {scriptLoaded ? "Webbshop" : "Webbshop"}
         </Button>
       </Box>
+      <div id="publit-webshop-root" />
     </Container>
   );
 }
