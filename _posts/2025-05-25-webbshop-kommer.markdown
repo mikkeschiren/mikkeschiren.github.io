@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: posts
 title:  "Sida under uppbygnad"
 date:   2025-05-25 10:27:50 +0200
 categories: jekyll update
