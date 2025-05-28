@@ -34,6 +34,9 @@ function App() {
         <Typography>
         [ˈtɛkːnadɛ ˈseːrjɛr]
         </Typography>
+        <Typography>
+         Kontakt: mikkeschiren@gmail.com
+        </Typography>
         <Button
           variant="contained"
           color="primary"
@@ -43,6 +46,7 @@ function App() {
         >
           {scriptLoaded ? "Webbshop" : "Webbshop"}
         </Button>
+
       </Box>
       <div id="publit-webshop-root" />
     </Container>
