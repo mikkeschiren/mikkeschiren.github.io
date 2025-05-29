@@ -1,61 +1,87 @@
-import './App.css';
-import React, { useState } from 'react';
-import { Button, Container, Typography, Box } from '@mui/material';
-import { Helmet } from "react-helmet";
+import React, { useState, useEffect } from 'react';
+import { Container, Typography, Box, Paper, Button, ButtonGroup } from "@mui/material";
+import links from './links.json';
 
 function App() {
+  const [visible, setVisible] = useState("publit");
 
-  const [scriptLoaded, setScriptLoaded] = useState(false);
-
-  const handleLoadPublitScript = () => {
-    // Prevent multiple injections
-    if (scriptLoaded) return;
-
-    // Create a script element
-    const script = document.createElement('script');
-    script.async = true;
-    script.setAttribute("loading", "lazy");
-    script.src = "https://webshop.publit.com/publit-webshop-1.0.js";
-    // Insert the JSON config as text content
-    script.text = `
-      {
-        "id": "5659",
-        "sortBy": "priority:desc"
+  useEffect(() => {
+    if (visible === "publit") {
+      if (!document.querySelector('script[src="https://webshop.publit.com/publit-webshop-1.0.js"]')) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.setAttribute("loading", "lazy");
+        script.src = "https://webshop.publit.com/publit-webshop-1.0.js";
+        script.text = `
+          {
+            "id": "5659",
+            "sortBy": "priority:desc"
+          }
+        `;
+        document.body.appendChild(script);
       }
-    `;
-    document.body.appendChild(script);
-    setScriptLoaded(true);
-  };
+    }
+  }, [visible]);
+
   return (
     <Container>
-
-      <Helmet>
-        <title>Sekvenser</title>
-      </Helmet>
-
-
       <Box my={4} textAlign="center">
         <Typography variant="h2" component="h1" gutterBottom>
           Sekvenser
         </Typography>
         <Typography>
-        [ˈtɛkːnadɛ ˈseːrjɛr]
+          [ˈtɛkːnadɛ ˈseːrjɛr]
         </Typography>
-        <Typography>
-         Kontakt: mikkeschiren@gmail.com
-        </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{ mt: 2 }}
-          onClick={handleLoadPublitScript}
-          disabled={scriptLoaded}
-        >
-          {scriptLoaded ? "Webbshop" : "Webbshop"}
-        </Button>
 
+        {/* Navigation Buttons */}
+        <Box mt={3} mb={2}>
+          <ButtonGroup variant="contained">
+            <Button
+              color={visible === "publit" ? "primary" : "inherit"}
+              onClick={() => setVisible(visible === "publit" ? null : "publit")}
+            >
+              {visible === "publit" ? "Webbshop" : "Webbshop"}
+            </Button>
+            <Button
+              color={visible === "contact" ? "primary" : "inherit"}
+              onClick={() => setVisible(visible === "contact" ? null : "contact")}
+            >
+              {visible === "contact" ? "Kontakt" : "Kontakt"}
+            </Button>
+            <Button
+              color={visible === "links" ? "primary" : "inherit"}
+              onClick={() => setVisible(visible === "links" ? null : "links")}
+            >
+              {visible === "links" ? "Länkar" : "Länkar"}
+            </Button>
+          </ButtonGroup>
+        </Box>
+
+        {/* Views */}
+        {visible === "contact" && (
+          <Paper elevation={3} sx={{ mt: 4, p: 2, display: "inline-block" }}>
+            <Typography variant="h6">Kontaktuppgifter</Typography>
+            <Typography>E-post: mikkeschiren@gmail.com</Typography>
+          </Paper>
+        )}
+
+        {visible === "publit" && (
+          <Box sx={{ mt: 4 }}>
+            <div id="publit-webshop-root" />
+          </Box>
+        )}
+
+        {visible === "links" && (
+          <Paper elevation={3} sx={{ mt: 4, p: 2, display: "inline-block" }}>
+            <Typography variant="h6" gutterBottom>Länkar</Typography>
+            {links.map((link, i) => (
+              <Typography key={i}>
+                <a href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</a>
+              </Typography>
+            ))}
+          </Paper>
+        )}
       </Box>
-      <div id="publit-webshop-root" />
     </Container>
   );
 }
