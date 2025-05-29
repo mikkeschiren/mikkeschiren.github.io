@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Typography, Box, Paper, Button, ButtonGroup } from "@mui/material";
 import links from './links.json';
+import SekvenserLogo from './sekvenser-logo.svg'
 
 function App() {
   const [visible, setVisible] = useState("publit");
@@ -26,9 +27,11 @@ function App() {
   return (
     <Container>
       <Box my={4} textAlign="center">
-        <Typography variant="h2" component="h1" gutterBottom>
-          Sekvenser
-        </Typography>
+        <img
+          src={SekvenserLogo}
+          alt="Sekvenser logo"
+          style={{ maxWidth: 400, width: "100%", height: "auto", marginBottom: 16 }}
+        />
         <Typography>
           [ˈtɛkːnadɛ ˈseːrjɛr]
         </Typography>
@@ -61,6 +64,7 @@ function App() {
         {visible === "contact" && (
           <Paper elevation={3} sx={{ mt: 4, p: 2, display: "inline-block" }}>
             <Typography variant="h6">Kontaktuppgifter</Typography>
+            <Typography>Redaktör: Mikke Schirén</Typography>
             <Typography>E-post: mikkeschiren@gmail.com</Typography>
           </Paper>
         )}
