@@ -46,6 +46,12 @@ function App() {
               {visible === "publit" ? "Webbshop" : "Webbshop"}
             </Button>
             <Button
+              color={visible === "about" ? "primary" : "inherit"}
+              onClick={() => setVisible(visible === "about" ? null : "about")}
+            >
+              {visible === "about" ? "Om" : "Om"}
+            </Button>
+            <Button
               color={visible === "contact" ? "primary" : "inherit"}
               onClick={() => setVisible(visible === "contact" ? null : "contact")}
             >
@@ -68,9 +74,22 @@ function App() {
             <Typography>E-post: mikkeschiren@gmail.com</Typography>
           </Paper>
         )}
+        {visible === "about" && (
+          <Paper elevation={3} sx={{ mt: 4, p: 2, display: "inline-block" }}>
+            <Typography variant="h6">Om</Typography>
+            <Typography variant="body1">Sekvenser är en tidskrift om teckande serier.</Typography>
+            <Typography variant="body1">Förstra numret sedan nystarten 2025 utkom i maj,</Typography>
+            <Typography variant="body1">nummer två utkommer i september och nummer tre i december.</Typography>
+            <Typography variant="body1">Vi har för närvarande ingen egen distribution, utan enda sättet att köpa tidskriften här via webben.</Typography>
+          </Paper>
+        )}
 
         {visible === "publit" && (
           <Box sx={{ mt: 4 }}>
+          <Paper elevation={3} sx={{ mt: 4, p: 2, display: "inline-block" }}>
+          <Typography variant="h6">Webbshop</Typography>
+          <Typography variant="body1">Beställningar i webbshoppen hanteras av Publit, och görs här.</Typography>
+          </Paper>
             <div id="publit-webshop-root" />
           </Box>
         )}
