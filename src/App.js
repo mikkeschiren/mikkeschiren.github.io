@@ -80,7 +80,7 @@ function App() {
             <Typography variant="body1">Sekvenser är en tidskrift om teckande serier.</Typography>
             <Typography variant="body1">Förstra numret sedan nystarten 2025 utkom i maj,</Typography>
             <Typography variant="body1">nummer två utkommer i september och nummer tre i december.</Typography>
-            <Typography variant="body1">Vi har för närvarande ingen egen distribution, utan enda sättet att köpa tidskriften här via webben.</Typography>
+            <Typography variant="body1">Vi har för närvarande ingen distribution, utan enda sättet att köpa tidskriften är här.</Typography>
           </Paper>
         )}
 
