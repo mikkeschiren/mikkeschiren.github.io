@@ -77,10 +77,7 @@ function App() {
         {visible === "about" && (
           <Paper elevation={3} sx={{ mt: 4, p: 2, display: "inline-block" }}>
             <Typography variant="h6">Om</Typography>
-            <Typography variant="body1">Sekvenser är en tidskrift om teckande serier.</Typography>
-            <Typography variant="body1">Förstra numret sedan nystarten 2025 utkom i maj,</Typography>
-            <Typography variant="body1">nummer två utkommer i september och nummer tre i december.</Typography>
-            <Typography variant="body1">Vi har för närvarande ingen distribution, utan enda sättet att köpa tidskriften är här.</Typography>
+            <Typography variant="body1">Sekvenser - Sveriges enda oberoende tidskrift om teckande serier.</Typography>
           </Paper>
         )}
 
